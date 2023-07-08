@@ -25,7 +25,7 @@ exports.addToCart = async (req, res) => {
 exports.deleteFromCart = async (req, res) => {
   const { id } = req.params;
   try {
-    console.log('deleted id' , id)
+    // console.log('deleted id' , id)
     const doc = await Cart.findByIdAndDelete(id);
     res.status(200).json(doc);
   } catch (err) {
