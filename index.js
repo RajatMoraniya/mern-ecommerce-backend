@@ -76,14 +76,14 @@ passport.use(
         async function (err, hashedPassword) {
           if (crypto.timingSafeEqual(user.password, hashedPassword)) {
             const token = jwt.sign(sanitizeUser(user), SECRET_KEY);
-            done(null, { token });
+            return done(null, {id:user.id, role:user.role});
           } else {
             return done(null, false, { message: "invalid credentials" });
           }
         }
       );
     } catch (err) {
-      res.status(400).json(err);
+      done(err);
     }
   })
 );
