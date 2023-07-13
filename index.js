@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 
 const productsRouter = require("./routes/Products");
 const categoriesRouter = require("./routes/Categories");
@@ -28,7 +28,7 @@ opts.jwtFromRequest = cookieExtractor;
 opts.secretOrKey = SECRET_KEY;
 
 //middlewares
-server.use(express.static('build'));
+server.use(express.static("build"));
 server.use(cookieParser());
 server.use(
   session({
@@ -45,6 +45,8 @@ server.use(
     exposedHeaders: ["X-Total-Count"],
   })
 );
+
+server.use(express.raw({ type: "application/json" }));
 server.use(express.json()); // to parse req.body
 server.use("/products", isAuth(), productsRouter.router);
 server.use("/categories", isAuth(), categoriesRouter.router);
@@ -76,7 +78,7 @@ passport.use(
         async function (err, hashedPassword) {
           if (crypto.timingSafeEqual(user.password, hashedPassword)) {
             const token = jwt.sign(sanitizeUser(user), SECRET_KEY);
-            return done(null, {id:user.id, role:user.role});
+            return done(null, { id: user.id, role: user.role });
           } else {
             return done(null, false, { message: "invalid credentials" });
           }
@@ -122,6 +124,67 @@ passport.deserializeUser(function (user, cb) {
     return cb(null, user);
   });
 });
+
+// Payments
+
+// This is your test secret API key.
+const stripe = require("stripe")(
+  "sk_test_51NTOwCSCEigeS01aUMY6fg6MlOgwMFIjrCZnoRF3TNtiUAzPOL8byuQAEufUcG5Xn6xloPraJbHDqYMX8dTRIDpq00NApocE4P"
+);
+
+server.post("/create-payment-intent", async (req, res) => {
+  const { totalAmount } = req.body;
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: totalAmount * 100,
+    currency: "inr",
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
+
+//Webhook
+// TODO: we will capture actual order after deploying out server live on public URL
+// This is your Stripe CLI webhook secret for testing your endpoint locally.
+const endpointSecret =
+  "whsec_2810d39483db8b713fbcbf4fa355148b38a69dba03d1f57c7c7366c68715ee55";
+
+server.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (request, response) => {
+    const sig = request.headers["stripe-signature"];
+
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    } catch (err) {
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+
+    // Handle the event
+    switch (event.type) {
+      case "payment_intent.succeeded":
+        const paymentIntentSucceeded = event.data.object;
+        // Then define and call a function to handle the event payment_intent.succeeded
+        break;
+      // ... handle other event types
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    // Return a 200 response to acknowledge receipt of the event
+    response.send();
+  }
+);
 
 main().catch((err) => console.log(err));
 
