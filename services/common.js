@@ -14,14 +14,14 @@ exports.cookieExtractor = function (req) {
     token = req.cookies["jwt"];
   }
 
-  // return token;
+  return token;
 
-  // TODO : this is temporary token for testing without cookie
-  dummytoken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWZiZDE0YzgxNzNmM2FkZDU4YTM0ZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5MjM4ODA0fQ.4ozn_-1MvygfZB-ZzxTiy9I5Z87h_T4OsXphhie85xc";
-  admintoken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWZiZGE2ZjBkODYyZjU1YjBmZDNkMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5MjM4OTUwfQ.a5itklafzR0m2qvRKkvsSr77WhWyJO2SjDMuhBq1adE";
+  // // TODO : this is temporary token for testing without cookie
+  // dummytoken =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWZiZDE0YzgxNzNmM2FkZDU4YTM0ZiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5MzI0MzA4fQ.jZ8Whzw3ZhDpBhXPtIcAQDSzwJ8xFYEm3ITv0v0Jgr8";
+  // admintoken =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWZiZGE2ZjBkODYyZjU1YjBmZDNkMyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4OTMyNDI1N30.53SUu1AahCfjBN4LrgYX5IVY4uVPJiywxnLj2YgbOJU";
 
-  return dummytoken;
+  // return dummytoken;
   // return admintoken;
 };
