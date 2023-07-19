@@ -55,11 +55,10 @@ exports.signOut = async (req, res) => {
   user.token = null;
   res
     .cookie("jwt", null, {
-      expires: new Date(Date.now() + 172800000),
+      expires: new Date(Date.now()),
       httpOnly: true,
     })
-    .status(201)
-    .json({ data: "sign out success" });
+    .sendStatus(201);
 };
 
 exports.checkAuth = async (req, res) => {
@@ -100,7 +99,6 @@ exports.resetPasswordRequest = async (req, res) => {
 exports.resetPassword = async (req, res) => {
   const { email, token, password } = req.body;
   const user = await User.findOne({ email: email, resetPasswordToken: token });
-  console.log("i call")
   if (user) {
     const salt = crypto.randomBytes(16);
     crypto.pbkdf2(
