@@ -1,4 +1,5 @@
 const { Order } = require("../model/Order");
+const { Product } = require("../model/Product");
 const { User } = require("../model/User");
 const { invoiceTemplate, sendMail } = require("../services/common");
 
@@ -17,13 +18,14 @@ exports.createOrder = async (req, res) => {
   try {
     const doc = await order.save();
     const user = await User.findById(order.user);
+    res.status(201).json(doc);
 
     sendMail({
       to: user.email,
       subject: "Order Placed",
       html: invoiceTemplate(order),
     });
-    res.status(201).json(doc);
+    inventory(order.items);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -76,5 +78,15 @@ exports.fetchAllOrders = async (req, res) => {
     res.status(200).json(docs);
   } catch (err) {
     res.status(400).json(err);
+  }
+};
+
+const inventory = async (orderItems) => {
+  for (let item of orderItems) {
+    console.log("Inventory");
+    let product = await Product.findOne({ _id: item.product.id });
+    product.$inc("stock", -1 * item.quantity);
+    // for optimum performance we should make inventory outside of product.
+    await product.save();
   }
 };
