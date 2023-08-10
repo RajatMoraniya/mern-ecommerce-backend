@@ -10,7 +10,6 @@ const {
 const passport = require("passport");
 
 const router = express.Router();
-console.log("hey auth router");
 
 //  /auth is already added in base path
 router
