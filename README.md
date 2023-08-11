@@ -3,11 +3,13 @@
 MERN E-Commerce with Admin Panel, Redux Toolkit, Stripe Payment, Cloud Deployment, Email Invoice, and many features (complete features given below in Description )
 
 🔥 Code Repositories:
+
 - React [frontend] -  https://github.com/RajatMoraniya/mern-fullstack-ecommerce-website
 - Node [backend] - https://github.com/RajatMoraniya/mern-ecommerce-backend
 
 🔥 Features :
-- Basic E-commerce Features- Product lists, Product Details, Cart, Checkout 
+
+- Basic E-commerce Features- Product lists, Product Details, Cart, Checkout
 - Secure Card Payments / Cash payments
 - Admin Panel - Add/Edit Orders. Add/Edit Products
 - Sorting, Filtering, and Pagination queries using Mongoose
@@ -16,8 +18,10 @@ MERN E-Commerce with Admin Panel, Redux Toolkit, Stripe Payment, Cloud Deploymen
 - User Profile and user orders
 
 🔥 Technical Details :
+
 - React 18 with Tailwind CSS
 - Redux Toolkit with Async Thunk
+- React-helmet for SEO
 - React Router v6
 - JSON-server for front-end testing
 - MongoDB for Database
@@ -26,6 +30,5 @@ MERN E-Commerce with Admin Panel, Redux Toolkit, Stripe Payment, Cloud Deploymen
 - Authentication using Passport JS
 - API Authentication using Passport JWT
 - MongoDB Atlas cloud database
-- Vercel Server deployment
 - Email using Nodemailer - using GMail SMTP system
 - Payments using Stripe - PaymentIntent based custom flow
