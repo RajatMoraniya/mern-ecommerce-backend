@@ -64,7 +64,7 @@ exports.fetchAllOrders = async (req, res) => {
   }
 
   const totalDocs = await totalOrdersQuery.count().exec();
-  console.log({ totalDocs });
+  // console.log({ totalDocs });
 
   if (req.query._page && req.query._limit) {
     const pageSize = req.query._limit;
@@ -83,7 +83,7 @@ exports.fetchAllOrders = async (req, res) => {
 
 const inventory = async (orderItems) => {
   for (let item of orderItems) {
-    console.log("Inventory");
+    // console.log("Inventory");
     let product = await Product.findOne({ _id: item.product.id });
     product.$inc("stock", -1 * item.quantity);
     // for optimum performance we should make inventory outside of product.

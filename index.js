@@ -174,7 +174,7 @@ passport.use(
 
 // this creates session variable req.user on being called from callbacks
 passport.serializeUser(function (user, cb) {
-  console.log("serialize", user);
+  // console.log("serialize", user);
   process.nextTick(function () {
     return cb(null, { id: user.id, role: user.role });
   });
@@ -182,7 +182,7 @@ passport.serializeUser(function (user, cb) {
 
 // this changes session variable req.user when called from authorized request
 passport.deserializeUser(function (user, cb) {
-  console.log("de-serialize", user);
+  // console.log("de-serialize", user);
   process.nextTick(function () {
     return cb(null, user);
   });
@@ -221,5 +221,5 @@ async function main() {
 }
 
 server.listen(process.env.PORT, () => {
-  console.log(`server started`);
+  console.log(`server started to ${process.env.PORT}`);
 });

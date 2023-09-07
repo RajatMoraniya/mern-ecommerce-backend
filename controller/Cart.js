@@ -13,7 +13,7 @@ exports.fetchCartByUser = async (req, res) => {
 
 exports.addToCart = async (req, res) => {
   const { id } = req.user;
-  console.log(req.body)
+  // console.log(req.body)
   const cart = new Cart({ ...req.body, user: id });
   try {
     const doc = await cart.save();
