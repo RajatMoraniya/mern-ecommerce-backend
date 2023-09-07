@@ -178,7 +178,7 @@ exports.invoiceTemplate = function (order) {
          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
            <tr>
              <td align="center" valign="top" style="padding: 36px 24px;">
-               <a href="https://mern-ecommerce-g8pd.onrender.com/" target="_blank" style="display: inline-block;">
+               <a href="https://nimart.rajatmoraniya.tech/" target="_blank" style="display: inline-block;">
                  <img src="logo512.png" alt="Nimart" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
                </a>
              </td>
@@ -362,7 +362,7 @@ exports.invoiceTemplate = function (order) {
            <!-- start unsubscribe -->
            <tr>
              <td align="center" bgcolor="#D2C7BA" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-               <p style="margin: 0;">To stop receiving these emails, you can <a href="https://mern-ecommerce-g8pd.onrender.com/" target="_blank">unsubscribe</a> at any time.</p>
+               <p style="margin: 0;">To stop receiving these emails, you can <a href="https://nimart.rajatmoraniya.tech/" target="_blank">unsubscribe</a> at any time.</p>
                <p style="margin: 0;">Nimart- Apni dukan , India</p>
              </td>
            </tr>

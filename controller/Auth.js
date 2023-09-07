@@ -79,7 +79,7 @@ exports.resetPasswordRequest = async (req, res) => {
 
     // Also set token in email
     const resetPageLink =
-      "https://mern-ecommerce-g8pd.onrender.com/reset-password?token=" +
+      "https://nimart.rajatmoraniya.tech/reset-password?token=" +
       token +
       "&email=" +
       email;
