@@ -79,7 +79,7 @@ exports.resetPasswordRequest = async (req, res) => {
 
     // Also set token in email
     const resetPageLink =
-      "https://nimart.rajatmoraniya.tech/reset-password?token=" +
+      "https://nimart.rajatmoraniya.tech/auth/reset-password?token=" +
       token +
       "&email=" +
       email;

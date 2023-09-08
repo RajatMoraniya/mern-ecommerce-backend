@@ -1,2 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
+# https://nimart.rajatmoraniya.tech/robotstxt.html
 User-agent: *
+Disallow: /admin/
+Disallow: /order-success/
+Disallow: /my-orders/
+Disallow: /my-orders/
+Disallow: /profile/
+Disallow: /stripe-checkout/
+Disallow: /auth/
+Disallow: /auth/
